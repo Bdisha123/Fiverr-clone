@@ -14,7 +14,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
 import * as url from "url"
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname=url.fileURLToPath(new URL('.', import.meta.url));
 const app=express()
 dotenv.config({path: './.env'});
 
@@ -28,7 +28,16 @@ const connect=async () => {
     }
 };
 
-app.use(cors({origin: "http://localhost:5173", credentials:true}));
+app.use(cors({origin: ["http://localhost:5173","http://localhost:5174","https://exquisite-paletas-883b65.netlify.app/" ],
+    credentials: true
+    // credentials: false
+}));
+// app.use(cors({
+//     origin: "*",
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT"]
+// }))
+// app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 // app.use("/api/users", userRoute);
@@ -49,10 +58,10 @@ app.use((err, req, res, next) => {
     return res.status(errorStatus).send(errorMessage);
 });
 
-app.use(express.static(path.join(__dirname,'.././client/dist')))
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname,".././client/dist/index.html"))
-})
+// app.use(express.static(path.join(__dirname,'.././client/dist')))
+// app.get('*', function(req, res) {
+//     res.sendFile(path.join(__dirname,".././client/dist/index.html"))
+// })
 
 
 app.listen(8000, () => {
