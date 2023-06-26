@@ -17,7 +17,7 @@ import * as url from "url"
 const __dirname=url.fileURLToPath(new URL('.', import.meta.url));
 const app=express()
 dotenv.config({path: './.env'});
-
+const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', true)
 const connect=async () => {
     try {
@@ -64,7 +64,7 @@ app.use((err, req, res, next) => {
 // })
 
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
     connect();
     console.log("backend server is running")
 })
