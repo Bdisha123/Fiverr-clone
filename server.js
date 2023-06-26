@@ -28,9 +28,10 @@ const connect=async () => {
     }
 };
 
-app.use(cors({origin: ["http://localhost:5173","http://localhost:5174","https://exquisite-paletas-883b65.netlify.app/" ],
-    credentials: true
+app.use(cors({origin: ["http://localhost:5173","http://localhost:5174" ],
+    // credentials: true
     // credentials: false
+    methods: ["GET", "POST", "PUT","DELETE"]
 }));
 // app.use(cors({
 //     origin: "*",
